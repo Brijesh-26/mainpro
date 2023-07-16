@@ -6,7 +6,7 @@ from .models import *
 import uuid
 from django.conf import settings
 from django.core.mail import send_mail
-from django.contrib.auth import authenticate,login
+from django.contrib.auth import authenticate,login, logout
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 
@@ -105,6 +105,12 @@ def verify(request , auth_token):
 
 def error_page(request):
     return  render(request , 'error.html')
+
+
+def log_out(request):
+    logout(request)
+    messages.info(request,"Logout Success")
+    return redirect('/accounts/login')
 
 
 
