@@ -1,0 +1,72 @@
+{% extends 'home.html' %}
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NewsFlash | Post</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static '/assets/images/favicon.png' %}">
+    <!-- Remix icons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="{% static '/assets/css/main.css' %}">
+</head>
+<body>
+    {% block content %}
+    <section class="blog-post section-header-offset">
+        <div class="blog-post-container container">
+            <div class="blog-post-data">
+                <h3 class="title blog-post-title">{{post.post_title}}</h3>
+                <div class="article-data">
+                    <span>{{post.post_date}}</span>
+                    <span class="article-data-spacer"></span>
+                    <span>{{post.post_read_min}} Min read</span>
+                </div>
+                <img src="{{post.post_image.url}}" alt="">
+            </div>
+
+            <div class="container">
+                <p>
+                    {{post.post_desc}}
+                </p>
+                
+
+                <blockquote class="quote">
+                    <p><span><i class="ri-double-quotes-l"></i></span> {{post.post_quote}}<span><i class="ri-double-quotes-r"></i></span></p>
+                </blockquote>
+
+                
+
+                <div class="author d-grid">
+                    <div class="author-image-box">
+                        <img src="{{post.post_author.profile.userimage.url}}" alt="" class="article-image">
+                    </div>
+                    <div class="author-about">
+                        <h3 class="author-name">{{post.post_author.username}}</h3>
+                        {% if post.post_author.profile.bio %}
+                        <p>{{post.post_author.profile.bio}}</p>
+                        {% else %}
+                        <h3>looks like user is new to platform</h3>
+                        {% endif %}
+                        <ul class="list social-media">
+                            <li class="list-item">
+                                <a href="#" class="list-link"><i class="ri-instagram-line"></i></a>
+                            </li>
+                            <li class="list-item">
+                                <a href="#" class="list-link"><i class="ri-facebook-circle-line"></i></a>
+                            </li>
+                            <li class="list-item">
+                                <a href="#" class="list-link"><i class="ri-twitter-line"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    {% endblock %}
+</body>
+</html>

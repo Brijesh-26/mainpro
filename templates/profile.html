@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+
+    <link rel="stylesheet" href="{% static '/assets/css/profile.css' %}">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+  
+
+    </head>
+  <body>
+
+    {% block content %} 
+    
+
+    {% if user.is_authenticated %}
+
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="container rounded bg-white  mb-5">
+            <div class="row">
+                <div class="col-md-3 border-right">
+                    <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                        <img class="rounded-circle " width="150px" src="{{user.profile.userimage.url}}">
+                        <span class="font-weight-bold">{{user.username}}</span>
+                        <span class="text-black-50">{{user.email}}</span>
+                        <span> </span>
+                    </div>
+                </div>
+                <div class="col-md-5 border-right">
+                    <div class="p-3 py-5">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h4 class="text-right">Profile Settings</h4>
+                        </div>              
+
+                        <div class="row mt-3">
+
+                            <div class="col-md-12">
+                                <label class="labels">username</label>
+                                <input name="firstname" type="text" disabled value= "{{user.username}}" class="form-control" placeholder="first name">
+                            </div>
+                            <div class="col-md-12">
+                                <label class="labels">Email ID</label>
+                                <input name= "email"type="text" disabled value= "{{user.email}}"class="form-control" placeholder="enter email id" value=""></div>
+                        </div>
+
+                        <br>
+
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h4 class="text-right">Soical Media</h4>
+                        </div>  
+
+                        <div class="row mt-3">
+                            <!-- instagram  -->
+                            <div class="col-md-12">
+                                <label class="labels">instagram</label>
+                                <input name="firstname" type="text" value= "" class="form-control" placeholder=" ">
+                            </div>
+                            <!-- facebook  -->
+                            <div class="col-md-12">
+                                <label class="labels">facebook</label>
+                                <input name="firstname" type="text" value= "" class="form-control" placeholder=" ">
+                            </div>
+                            <!-- linkedin  -->
+                            <div class="col-md-12">
+                                <label class="labels">linkedin</label>
+                                <input name="firstname" type="text" value= "" class="form-control" placeholder=" ">
+                            </div>
+                            
+                        </div>
+                        
+                        
+                        
+                    
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-3 py-5">
+                        <div class="d-flex justify-content-between align-items-center experience" > <span>Passionate about...</span></div><br>
+                        <div>
+                            <textarea name= "bio" disabled rows="10" cols="40" placeholder=" " >{{user.profile.bio}}</textarea>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+
+    {% else %}
+
+    <div class="global-container">
+        <div class="card login-form">
+            <div class="card-body">
+                <<h1>you've not an accout with our community </h1>
+            </div>
+        </div>
+    </div>
+      
+    {% endif %}
+    
+    {% endblock content %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+  
+    
+</body>
+</html>

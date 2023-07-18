@@ -1,0 +1,30 @@
+{% extends 'home.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- Popular tags done  -->
+<section class="popular-tags section">
+
+
+    <div class="container">
+
+        <h2 class="title section-title" data-name="Popular tags">Popular tags</h2>
+
+        <div class="popular-tags-container d-grid">
+            {% for x in all_data %}
+            <a href="{% url 'tag_specific' x.post_tag %}" class="article">
+                <span class="tag-name">#{{x.post_tag}}</span>
+                <img src="{{x.post_image.url}}" alt="" class="article-image">
+            </a>
+
+            {% endfor %}
+
+            
+
+        </div>
+        
+
+    </div>
+</section>
+{% endblock %}

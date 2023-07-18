@@ -1,0 +1,47 @@
+{% extends 'home.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Older posts done  -->
+<br>
+
+<br>
+<section class="older-posts section">
+
+    <div class="container">
+        
+
+        <div class="older-posts-grid-wrapper d-grid">
+
+            {% for x in tag_specific_data %}
+
+            <a href="{% url 'post_detail' x.pk %}" class="article d-grid">
+                <div class="older-posts-article-image-wrapper">
+                    <img src="{{x.post_image.url}}" alt="" class="article-image">
+                </div>
+
+                <div class="article-data-container">
+
+                    <div class="article-data">
+                        <span>{{x.post_date}}</span>
+                        <span class="article-data-spacer"></span>
+                        <span>{{x.post_read_min}} Min read</span>
+                    </div>
+
+                    <h3 class="title article-title">{{x.post_title}}</h3>
+                    <p class="article-description">{{x.post_desc|truncatechars:150}}</p>
+
+                </div>
+            </a>
+
+            {% endfor %}
+            
+
+    </div>
+
+</section>
+{% endblock %}
+
+
+<!-- here all posts of a specific tag will be shown and 
+    each post will be redirect to corresponding detail page  -->

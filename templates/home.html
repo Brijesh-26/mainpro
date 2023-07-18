@@ -1,19 +1,327 @@
-{% extends "base.html"%}
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Completed - NewsFlash | Home</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static '/assets/images/favicon.png' %}">
+    
+    
+    
+    <!-- Remix icons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="{% static '/assets/css/main.css' %}">
+    
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header" id="header">
+
+        <nav class="navbar container">
+            <a href="/">
+                <h2 class="logo">{{user.username}}'s Blogger</h2>
+            </a>
+
+            <div class="menu" id="menu">
+                <ul class="list">
+                    <li class="list-item">
+                        <a href="/blog/home" class="list-link current">Home</a>
+                    </li>
+                    <li class="list-item">
+                        <a href="/profile" class="list-link">Profile</a>
+                    </li>
+                    <li class="list-item">
+                        <a href="/subscribe" class="list-link">Subscribe</a>
+                    </li>
+                    <li class="list-item">
+                        <a href="#" class="list-link">Contact</a>
+                    </li>
+                    
+                </ul>
+            </div>
+
+            <div class="list list-right">
+
+                <!-- lighting -->
+                <button class="btn place-items-center" id="theme-toggle-btn">
+                    <i class="ri-sun-line sun-icon"></i>
+                    <i class="ri-moon-line moon-icon"></i>
+                </button>
+                
+                
+
+                {% if user.is_authenticated %}
+                <a href="/accounts/login/" class="list-link screen-sm-hidden">Log out</a>
+                {% else %}
+                <a href="/accounts/login/" class="list-link screen-sm-hidden">Log In</a>
+                <a href="/register/" class="btn sign-up-btn fancy-border screen-sm-hidden">
+                    <span>Register</span>
+                </a>
+                {% endif %}
+                
+            </div>
+
+        </nav>
+
+    </header>
 
     {% block content %}
-
-
-    <div class="global-container">
-        <div class="card login-form">
-        <div class="card-body">
-            <h3 class="card-title text-center">Welcome, User {{request.user.username}}</h3>
-
-            <a href="/accounts/login">log out</a>
-          
-            </div>
-        </div>
-    </div>
-    </div>
     
+    
+    <!-- Featured articles -->
+    <section class="featured-articles section section-header-offset">
 
-    {% endblock %}
+        <div class="featured-articles-container container d-grid">
+
+            <div class="featured-content d-grid">
+
+                <div class="headline-banner">
+                    <h3 class="headline fancy-border">
+                        <span class="place-items-center">Breaking news</span>
+                    </h3>
+                    <span class="headline-description">Apple announces a new partnership...</span>
+                </div>
+
+
+                {% for x in context1.all_data1 %}
+                    <a href="#" class="article featured-article ">
+                        <img src="{{x.post_image.url}}" alt="" class="article-image">
+                        <span class="article-category">{{x.post_tag}}</span>
+
+                        <div class="article-data-container">
+
+                            <div class="article-data">
+                                <span>Dec 5th 2021</span>
+                                <span class="article-data-spacer"></span>
+                                <span>8 Min read</span>
+                            </div>
+
+                            <h3 class="title article-title">Is VR the future?</h3>
+
+                        </div>
+                    </a>   
+                {% endfor %}
+            </div>
+            
+            <div class="sidebar d-grid">
+
+                <h3 class="title featured-content-title">Trending news</h3>
+
+                {% for x in context2.all_data2 %}
+                    <a href="{% url 'post_detail' x.pk %}" class="trending-news-box">
+                        <div class="trending-news-img-box">
+                            <span class="trending-number place-items-center"></span>
+                            <img src="{{x.post_image.url}}" alt="" class="article-image">
+                        </div>
+
+                        <div class="trending-news-data">
+
+                            <div class="article-data">
+                                <span>{{x.post_date}}</span>
+                                <span class="article-data-spacer"></span>
+                                <span>{{x.post_read_min}} Min read</span>
+                            </div>
+
+                            <h3 class="title article-title">{{x.post_title}}</h3>
+
+                        </div>
+                    </a>
+                {% endfor %} 
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- Older posts done  -->
+    <section class="older-posts section">
+
+        <div class="container">
+
+            <h2 class="title section-title" data-name="Older posts">Older posts</h2>
+
+            <div class="older-posts-grid-wrapper d-grid">
+
+                {% for x in context.all_data %}
+
+                <a href="{% url 'post_detail' x.pk %}" class="article d-grid">
+                    <div class="older-posts-article-image-wrapper">
+                        <img src="{{x.post_image.url}}" alt="" class="article-image">
+                        
+                    </div>
+
+                    <div class="article-data-container">
+
+                        <div class="article-data">
+                            <span>{{x.post_date}}</span>
+                            <span class="article-data-spacer"></span>
+                            <span>{{x.post_read_min}} Min read</span>
+                            
+                            
+                            
+
+                        </div>
+
+                        <h3 class="title article-title">{{x.post_title}}</h3>
+                        <p class="article-description">{{x.post_desc|truncatechars:150}}</p>
+
+                        
+
+                    </div>
+                </a>
+                
+
+                {% endfor %}
+
+                
+
+            </div>
+
+            <div class="see-more-container">
+                <a href="/blog/olderpost" class="btn see-more-btn place-items-center">See more <i class="ri-arrow-right-s-line"></i></i></a>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Popular tags done  -->
+    <section class="popular-tags section">
+
+
+        <div class="container">
+
+            <h2 class="title section-title" data-name="Popular tags">Popular tags</h2>
+
+            <div class="popular-tags-container d-grid">
+                {% for x in context.all_data %}
+                <a href="{% url 'tag_specific' x.post_tag %}" class="article">
+                    <span class="tag-name">#{{x.post_tag}}</span>
+                    <img src="{{x.post_image.url}}" alt="" class="article-image">
+                </a>
+
+                {% endfor %}
+
+                
+
+            </div>
+
+
+            <div class="see-more-container">
+                <a href="/blog/tags" class="btn see-more-btn place-items-center">See more <i class="ri-arrow-right-s-line"></i></i></a>
+            </div>
+
+        </div>
+    </section>
+ {% endblock %}
+
+    <!-- Footer -->
+    <footer class="footer section">
+
+        <div class="footer-container container ">
+            
+            <div class="company-data">
+                <a href="/blog/home/">
+                    <h2 class="logo">Blogger</h2>
+                </a>
+                <p class="company-description">provides a seamless writing experience, enabling bloggers to draft, edit, and format their blog posts effortlessly.</p>
+                
+                <ul class="list social-media">
+                    <li class="list-item">
+                        <a href="https://www.instagram.com/__brijesh26__/" class="list-link"  target="_blank" ><i class="ri-instagram-line"></i></a>
+                    </li>
+                    <li class="list-item">
+                        <a href="https://www.facebook.com/profile.php?id=100074687511025" class="list-link" target="_blank" ><i class="ri-facebook-circle-line"></i></a>
+                    </li>
+                    <li class="list-item">
+                        <a href="witter.com/hello_world1001" class="list-link" target="_blank" ><i class="ri-twitter-line"></i></a>
+                    </li>
+                    <li class="list-item">
+                        <a href="https://in.pinterest.com/brijeshkumarv598/" class="list-link" target="_blank" ><i class="ri-pinterest-line"></i></a>
+                    </li>
+                </ul>
+
+                <span class="copyright-notice">&copy;2023 Blogger. All rights reserved.</span>
+            </div>
+            
+<!-- 
+            <div>
+                <h6 class="title footer-title">Useful links</h6>
+                
+                <ul class="footer-list list">
+                    <li class="list-item">
+                        <a href="#" class="list-link">Home</a>
+                    </li>
+                    <li class="list-item">
+                        <a href="#" class="list-link">Elements</a>
+                    </li>
+                    <li class="list-item">
+                        <a href="#" class="list-link">Tags</a>
+                    </li>
+                    <li class="list-item">
+                        <a href="#" class="list-link">Authors</a>
+                    </li>
+                    <li class="list-item">
+                        <a href="#" class="list-link">Membership</a>
+                    </li>
+                </ul>
+
+            </div>
+
+            <div>
+                <h6 class="title footer-title">Company</h6>
+                
+                <ul class="footer-list list">
+                    <li class="list-item">
+                        <a href="#" class="list-link">Contact us</a>
+                    </li>
+                    <li class="list-item">
+                        <a href="#" class="list-link">F.A.Q</a>
+                    </li>
+                    <li class="list-item">
+                        <a href="#" class="list-link">Careers</a>
+                    </li>
+                    <li class="list-item">
+                        <a href="#" class="list-link">Authors</a>
+                    </li>
+                    <li class="list-item">
+                        <a href="#" class="list-link">Memberships</a>
+                    </li>
+                </ul>
+
+            </div> -->
+
+        </div>
+        
+    </footer>
+    
+    <script>
+
+        var temp= document.getElementById("theme-toggle-btn")
+
+        temp.onclick = function(){
+            document.body.classList.toggle("light-theme")
+        }
+
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const favoriteButton = document.querySelector('.favorite-icon');
+            
+            favoriteButton.addEventListener('click', function() {
+                this.classList.toggle('active');
+            });
+        });
+        
+        
+    </script>
+</body>
+</html>

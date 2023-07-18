@@ -10,6 +10,14 @@ from django.contrib.auth import authenticate,login, logout
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 
+
+def subscribe(request):
+    return render(request, 'subscribe.html')
+
+def view_profile(request):
+    
+    return render(request, 'profile.html')
+
 @login_required
 def home(request):
     return render(request , 'home.html')
@@ -39,7 +47,7 @@ def login_attempt(request):
             return redirect('/accounts/login')
         
         login(request , user)
-        return redirect('/')
+        return redirect('/blog/home')
 
     return render(request , 'login.html')
 
@@ -111,12 +119,6 @@ def log_out(request):
     logout(request)
     messages.info(request,"Logout Success")
     return redirect('/accounts/login')
-
-
-
-
-
-
 
 
 def send_mail_after_registration(email , token):
