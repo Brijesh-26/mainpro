@@ -1,0 +1,6 @@
+venv/
+mainpro/__pycache__/
+mainapp/__pycache__/
+mainapp/migrations/__pycache__/
+authapp/__pycache__/
+authapp/migrations/__pycache__/
