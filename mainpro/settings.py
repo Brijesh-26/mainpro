@@ -4,8 +4,7 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-import os
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = 'django-insecure-4he*dc*ac_qcn*yg9+88z=x^=7v28g@=fwuyutr((6o(x!$nb*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
