@@ -10,5 +10,7 @@ urlpatterns = [
     
     path('olderpost/', views.olderPost, name= 'older_post'),
     path('tags/', views.tags, name= 'tags'),
-    path('tags/<str:tag>/', views.tagSpecific, name="tag_specific")
+    path('tags/<str:tag>/', views.tagSpecific, name="tag_specific"),
+    path('addpost', views.addPost, name="addpost"),
+    
 ]

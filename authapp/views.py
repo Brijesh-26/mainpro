@@ -117,7 +117,7 @@ def error_page(request):
 def log_out(request):
     logout(request)
     messages.info(request,"Logout Success")
-    return redirect('/accounts/login')
+    return redirect('/')
 
 
 def send_mail_after_registration(email , token):

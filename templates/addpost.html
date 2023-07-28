@@ -1,0 +1,63 @@
+{% extends 'home.html' %} 
+{% load static %} 
+{% block content %}
+<br />
+
+<!-- Newsletter -->
+<section class="newsletter section">
+  <div class="container">
+    <h2 class="title section-title" data-name="new post">New Post+</h2>
+
+    {% if user.is_authenticated %}
+    
+
+    <!-- <form method="POST" enctype="multipart/form-data">
+        
+
+      <label for="desc">Description </label><br />
+      <input type="textarea" id="desc" name="desc" /><br />
+
+      <label for="fname">Give A quote..</label><br />
+      <input type="textarea" id="quote" name="quote" /><br />
+
+      <label for="fname">Post Image </label><br />
+      <input type="file" id="fname" name="fname" /><br />
+
+      <label for="tags">Related Tag:</label>
+      
+      <select name="tags" id="tags">
+        <option value="volvo">TECH</option>
+        <option value="saab">FOOD</option>
+        <option value="mercedes">SPRITUAL</option>
+        <option value="audi">MOTIVATION</option>
+        <option value="audi">POLITICS</option>
+        <option value="audi">MOVIES</option>
+        <option value="audi">MUSIC</option>
+      </select>
+      <br>
+
+
+      <label for="fname">Min Read Time </label><br />
+      <input type="number" id="read_min" name="read_min" /><br />
+      
+
+      <button class="btn"><i class="fa fa-home"></i> Home</button>
+       <button class="btn btn-success"  type="submit" >POST</button> 
+    </form> -->
+
+    {% else %}
+
+    <div class="global-container">
+      <div class="card login-form">
+        <div class="card-body">
+          <h1>
+            you've not an accout with our community...Pls go to register page.
+          </h1>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+{% endblock %}

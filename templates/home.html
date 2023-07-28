@@ -24,9 +24,16 @@
     <header class="header" id="header">
 
         <nav class="navbar container">
+            {% if user.is_authenticated %}
             <a href="/">
                 <h2 class="logo">{{user.username}}'s Blogger</h2>
             </a>
+            {% else %}
+            <a href="/">
+                <h2 class="logo">Blogger</h2>
+            </a>
+            {% endif %}
+            
 
             <div class="menu" id="menu">
                 <ul class="list">
@@ -39,9 +46,9 @@
                     <li class="list-item">
                         <a href="/contactUs" class="list-link">Contact</a>
                     </li>
-                    <li class="list-item">
-                        <a href="#" class="list-link">Add Blog+</a>
-                    </li>
+                    <!-- <li class="list-item">
+                        <a href="/addpost" class="list-link">Add Blog+</a>
+                    </li> -->
                     
                 </ul>
             </div>
@@ -57,7 +64,7 @@
                 
 
                 {% if user.is_authenticated %}
-                <a href="/accounts/login/" class="list-link screen-sm-hidden">Log out</a>
+                <a href="/logout/" class="list-link screen-sm-hidden">Log out</a>
                 {% else %}
                 <a href="/accounts/login/" class="list-link screen-sm-hidden">Log In</a>
                 <a href="/register/" class="btn sign-up-btn fancy-border screen-sm-hidden">
@@ -206,7 +213,7 @@
             </div>
 
             <div class="see-more-container">
-                <a href="/blog/olderpost" class="btn see-more-btn place-items-center">See more <i class="ri-arrow-right-s-line"></i></i></a>
+                <a href="/olderpost" class="btn see-more-btn place-items-center">See more <i class="ri-arrow-right-s-line"></i></i></a>
             </div>
 
         </div>
@@ -236,7 +243,7 @@
 
 
             <div class="see-more-container">
-                <a href="/blog/tags" class="btn see-more-btn place-items-center">See more <i class="ri-arrow-right-s-line"></i></i></a>
+                <a href="/tags" class="btn see-more-btn place-items-center">See more <i class="ri-arrow-right-s-line"></i></i></a>
             </div>
 
         </div>

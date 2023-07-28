@@ -11,6 +11,8 @@
 
         <h2 class="title section-title" data-name="Bloggers">Bloggers</h2>
 
+        {% if user.is_authenticated %}
+
         <div class="form-container-inner">
             <h6 class="title newsletter-title">Contact to Admin</h6>
             <p class="newsletter-description">Your valuable feedback is most precious to us..</p>
@@ -25,6 +27,20 @@
             </form>
 
         </div>
+
+        {% else %}
+
+
+        <div class="global-container">
+            <div class="card login-form">
+                <div class="card-body">
+                    <h1>you've not an accout with our community...Pls go to register page.</h1>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        
 
     </div>
 
