@@ -9,14 +9,16 @@
 
     <div class="container">
 
-        <h2 class="title section-title" data-name="Newsletter">Newsletter</h2>
+        <h2 class="title section-title" data-name="Bloggers">Bloggers</h2>
 
         <div class="form-container-inner">
-            <h6 class="title newsletter-title">Subscribe to NewsFlash</h6>
-            <p class="newsletter-description">Lorem ipsum dolor sit amet consectetur adipisicing quaerat dignissimos.</p>
+            <h6 class="title newsletter-title">Contact to Admin</h6>
+            <p class="newsletter-description">Your valuable feedback is most precious to us..</p>
 
-            <form action="" class="form">
-                <input class="form-input" type="text" placeholder="Enter your email address">
+            <form action="" class="form" method= "POST">
+                {% csrf_token %}
+                <input class="form-input" type="textarea" name= "msg" placeholder="You feedback here...">
+                
                 <button class="btn form-btn" type="submit">
                     <i class="ri-mail-send-line"></i>
                 </button>

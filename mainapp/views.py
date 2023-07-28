@@ -1,6 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Post
 from django.shortcuts import render, get_object_or_404
+from django.core.mail import send_mail
+from django.contrib import messages
 
 # Create your views here.
 
@@ -49,5 +51,35 @@ def tagSpecific(request, tag):
     tag_specific_data= Post.objects.filter(post_tag= tag)
     
     return render(request, 'tag_specific.html', {'tag_specific_data':tag_specific_data})
+
+
+def contact(request):
+
+    if request.method=='POST':
+        msg= request.POST.get('msg')  
+        email= request.user.email      
+        send_mail(
+            'Hi admin there is one message for you',
+            msg+' by -> '+request.user.username,            
+            email,
+            ["djangowork97@gmail.com"],
+            fail_silently=False,
+        )
+        messages.success(request,"we will get back to you soon..")
+        print('msg sent successfully')
+        messages.warning(request,"message sent successfully")
+        return redirect('/')
+    return render(request, 'subscribe.html')
+
+
+# def send_mail_after_registration(email , token):
+#     subject = 'Your accounts need to be verified'
+#     message = f'Hi paste the link to verify your account http://127.0.0.1:8000/verify/{token}'
+#     email_from = settings.EMAIL_HOST_USER
+#     recipient_list = [email]
+    # send_mail(subject, message , email_from ,recipient_list )
+    
+    
+
 
 

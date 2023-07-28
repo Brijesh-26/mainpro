@@ -11,8 +11,7 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 
-def subscribe(request):
-    return render(request, 'subscribe.html')
+
 
 def view_profile(request):
     
@@ -47,7 +46,7 @@ def login_attempt(request):
             return redirect('/accounts/login')
         
         login(request , user)
-        return redirect('/blog/home')
+        return redirect('/')
 
     return render(request , 'login.html')
 

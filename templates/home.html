@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Completed - NewsFlash | Home</title>
+    <title>Welcome-Bloggers</title>
     
     <!-- Favicon -->
-    <link rel="icon" type="image/png" sizes="32x32" href="{% static '/assets/images/favicon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static '/assets/images/imp.jpg' %}">
     
     
     
@@ -31,16 +31,16 @@
             <div class="menu" id="menu">
                 <ul class="list">
                     <li class="list-item">
-                        <a href="/blog/home" class="list-link current">Home</a>
+                        <a href="/" class="list-link current">Home</a>
                     </li>
                     <li class="list-item">
                         <a href="/profile" class="list-link">Profile</a>
                     </li>
                     <li class="list-item">
-                        <a href="/subscribe" class="list-link">Subscribe</a>
+                        <a href="/contactUs" class="list-link">Contact</a>
                     </li>
                     <li class="list-item">
-                        <a href="#" class="list-link">Contact</a>
+                        <a href="#" class="list-link">Add Blog+</a>
                     </li>
                     
                 </ul>
@@ -72,6 +72,25 @@
     </header>
 
     {% block content %}
+
+
+    <!-- displaying any messages which come from anywhere -->
+
+    {% for message in messages %}
+
+    <div
+      class="alert alert-{{message.tags}} alert-dismissible fade show"
+      role="alert"
+    >
+      <strong>{{message}}</strong>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+      ></button>
+    </div>
+    {% endfor %}
     
     
     <!-- Featured articles -->
@@ -83,9 +102,9 @@
 
                 <div class="headline-banner">
                     <h3 class="headline fancy-border">
-                        <span class="place-items-center">Breaking news</span>
+                        <span class="place-items-center">Most Liked</span>
                     </h3>
-                    <span class="headline-description">Apple announces a new partnership...</span>
+                    <span class="headline-description">People are loving these post ...</span>
                 </div>
 
 

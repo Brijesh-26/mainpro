@@ -27,7 +27,7 @@ class Post(models.Model):
     post_date= models.DateField(auto_now_add=True)
     
     def __str__(self):
-        return self.post_title
+        return self.post_title+'->'+ str(self.post_author)
 
 
 def post_detail(request, post_id):
