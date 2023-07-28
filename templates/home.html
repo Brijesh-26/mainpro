@@ -109,19 +109,19 @@
 
 
                 {% for x in context1.all_data1 %}
-                    <a href="#" class="article featured-article ">
+                    <a href="{% url 'post_detail' x.pk %}" class="article featured-article ">
                         <img src="{{x.post_image.url}}" alt="" class="article-image">
                         <span class="article-category">{{x.post_tag}}</span>
 
                         <div class="article-data-container">
 
                             <div class="article-data">
-                                <span>Dec 5th 2021</span>
+                                <span>{{post_date}}</span>
                                 <span class="article-data-spacer"></span>
-                                <span>8 Min read</span>
+                                <span>{{x.post_read_min}}</span>
                             </div>
 
-                            <h3 class="title article-title">Is VR the future?</h3>
+                            <h3 class="title article-title">{{x.post_title}}</h3>
 
                         </div>
                     </a>   
