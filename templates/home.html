@@ -17,8 +17,11 @@
     <!-- Custom styles -->
     <link rel="stylesheet" href="{% static '/assets/css/main.css' %}">
     
+
+
+    
 </head>
-<body>
+<body class="light-theme">
 
     <!-- Header -->
     <header class="header" id="header">
@@ -329,25 +332,29 @@
         </div>
         
     </footer>
-    
-    <script>
 
-        var temp= document.getElementById("theme-toggle-btn")
 
-        temp.onclick = function(){
-            document.body.classList.toggle("light-theme")
+
+    <script>        
+        const bodyElement= document.body;
+        const themeToggleBtn= document.getElementById('theme-toggle-btn')
+        const currentTheme= localStorage.getItem('currentTheme')
+
+        if(currentTheme){
+            bodyElement.classList.add('light-theme');
         }
+        
+        themeToggleBtn.addEventListener('click', () =>{
+            bodyElement.classList.toggle('light-theme');
 
-
-        document.addEventListener('DOMContentLoaded', function() {
-            const favoriteButton = document.querySelector('.favorite-icon');
-            
-            favoriteButton.addEventListener('click', function() {
-                this.classList.toggle('active');
-            });
+            if(bodyElement.classList.contains('light-theme')){
+                localStorage.setItem('currentTheme', 'themeActive')
+            }else{
+                localStorage.removeItem('currentTheme') 
+            }
         });
-        
-        
     </script>
+    
+    
 </body>
 </html>
